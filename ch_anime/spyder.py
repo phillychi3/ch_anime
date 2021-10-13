@@ -61,8 +61,7 @@ class spyder():
         chrome.close()
         soup=soup.find("a",class_="yt-simple-endpoint style-scope ytd-video-renderer")
         soup=soup.get("href")
-        chrome = webdriver.Chrome()
-        chrome.get(f"https://www.youtube.com{soup}")
+        return f"https://www.youtube.com{soup}"
 
     def translate(self,thing):
         chrome_options = webdriver.ChromeOptions()
