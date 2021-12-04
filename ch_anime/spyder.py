@@ -1,13 +1,16 @@
+import asyncio
+import os
+import random
+import time
+from random import random
+
+import pyperclip
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
-import time
-import pyperclip
-import asyncio
 from selenium.webdriver.common.keys import Keys
-from random import random
-import random
-import os
+from webdriver_manager.chrome import ChromeDriverManager
+
 
 class spyder():
 
@@ -186,6 +189,7 @@ class spyder():
     def schimage(self,thing):
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--headless') 
+        
         chrome = webdriver.Chrome(chrome_options=chrome_options)
         chrome.get("http://iqdb.org/")
         sc = chrome.find_element_by_id("url")
@@ -256,6 +260,22 @@ class spyder():
         i=random.randint(1,20)
         picture=(jason[i]["large_file_url"])
         return(picture)
+
+    def math(self,thing):
+        chrome = webdriver.Chrome(ChromeDriverManager().install())
+        chrome.get("https://zs.symbolab.com/solver/step-by-step/a+a=2?or=input")
+        time.sleep(1)
+        soup = BeautifulSoup(chrome.page_source, "html.parser")
+        chrome.close()
+        soup=soup.find("span",class_="solution_step_title_text mathquill-embedded-latex mathquill-rendered-math")
+        soup=soup.find_all("span")
+        for a in soup:
+            try:
+                ans+=a.text 
+            except:
+                ans=a.text 
+        return(ans)
+    
 
 if __name__ == '__main__':
     data=input("meeee")
