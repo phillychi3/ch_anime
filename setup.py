@@ -4,7 +4,7 @@ with open("idk", "r") as lo:
 
 setuptools.setup(
      name='ch_anime',  
-     version='0.1.0',
+     version='0.1.1',
      author="phillychi3",
      author_email="phillychi3@gmail.com",
      description="some spider",
